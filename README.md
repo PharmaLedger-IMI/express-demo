@@ -1,6 +1,6 @@
 # express-demo
 
-This project is meant to show how Express server can interact with OpenDSU. In this tutorial we will
+This project is meant to show how Express server can interact with OpenDSU. This will bring us the capability to make a REST call to retreive the leaflet.xml from a product using _gtin_, _batch_ and _expiration date_ parameters.
 
 ## Prerequisites
 
