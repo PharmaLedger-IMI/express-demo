@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 const PORT = 8090;
+const dlDomain = 'default';
 
 // Loading OpenDSU Environment
 require('../privatesky/psknode/bundles/pskWebServer');
@@ -14,7 +15,11 @@ require('../gtin-resolver/build/bundles/gtinResolver');
 
 // Defining a GET with /leaflet endpoint that based on query params is able to load a DSU and retrieve the leaflet file from it
 app.get('/leaflet', (req, res) => {
-    let {dlDomain, gtin, batch, expirationDate} = req.query;
+    let {gtin, batch, expirationDate} = req.query;
+
+    if (gtin === undefined || batch === undefined || expirationDate === undefined) {
+        return res.status(400).send();
+    }
 
     // Obtaining gtin-resolver instance
     const gtinResolver = require('gtin-resolver');
